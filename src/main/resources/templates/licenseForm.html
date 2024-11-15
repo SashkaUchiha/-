@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Activate License</title>
+</head>
+<body>
+<h1>Для доступа к приложению требуется лицензия</h1>
+<form action="#" th:action="@{/license}"  method="post">
+    <label for="licenseNumber">Номер лицензии:</label>
+    <input type="text" id="licenseNumber" name="licenseNumber"/>
+    <button type="submit">Активировать</button>
+</form>
+
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+</body>
+</html>

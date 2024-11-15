@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Капча</title>
+</head>
+<body>
+<h1>Форма с капчей</h1>
+<form action="/submit" method="post">
+  <label for="captcha">Введите текст с картинки:</label><br>
+  <img src="/captcha" alt="Капча" /><br>
+  <input type="text" id="captcha" name="captcha" required><br>
+  <button type="submit">Отправить</button>
+</form>
+<div th:if="${errorMessage}" style="color:red;">
+  <p th:text="${errorMessage}"></p>
+</div>
+</body>
+</html>
