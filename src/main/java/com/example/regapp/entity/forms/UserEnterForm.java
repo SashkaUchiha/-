@@ -1,4 +1,4 @@
-package com.example.regapp.entity;
+package com.example.regapp.entity.forms;
 
 import lombok.Data;
 

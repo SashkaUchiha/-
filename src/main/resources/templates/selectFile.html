@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор файла</title>
+    <style>
+        .file-button {
+            display: inline-block;
+            background-color: #007BFF; /* Голубой цвет */
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none; /* Убираем подчеркивание */
+            font-size: 16px;
+        }
+
+        .file-button:hover {
+            background-color: #0056b3; /* Темнее при наведении */
+        }
+
+        .hidden-radio {
+            display: none; /* Скрываем радиокнопки */
+        }
+    </style>
+</head>
+<body>
+<h1>Выберите файл</h1>
+
+<form action="/user/open" method="get">
+    <ul>
+        <li th:each="file : ${files}">
+            <input type="radio" th:id="${file.fileName}" th:value="${file.fileName}" name="selectedFile" class="hidden-radio"/>
+            <label th:for="${file.fileName}" style="cursor: pointer;">
+                <button type="button" class="file-button"
+                        onclick="const radio = this.closest('li').querySelector('input[type=radio]');
+                        radio.checked = true; this.closest('form').submit();">
+                    <span th:text="${file.fileName}">Файл</span>
+                </button>
+            </label>
+        </li>
+    </ul>
+</form>
+<form action="/user/showAdminForm" method="post">
+    <button type="submit">Панель администратора</button>
+</form>
+<div th:if="${message}" style="color:darkgreen;">
+    <p th:text="${message}"></p>
+</div>
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+</body>
+</html>

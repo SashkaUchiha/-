@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -26,6 +27,8 @@ public class User {
     @Size(min = 6, max = 6)
     @Column(name = "password", nullable = false)
     private String password;
+    @Column(name = "salt", nullable = false)
+    private String salt;
     @Column(name = "full_name", nullable = false)
     private String fullName;
     @Column(name = "phone", nullable = false)
@@ -35,4 +38,6 @@ public class User {
     private String email;
     @Column(name = "address", nullable = false)
     private String address;
+    @Column(name = "role")
+    private String role;
 }
