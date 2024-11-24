@@ -12,6 +12,23 @@ import java.util.Base64;
 
 @Slf4j
 public class HashService {
+    private static String generateFileHash(File file) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] fileBytes = Files.readAllBytes(file.toPath());
+            byte[] hashBytes = digest.digest(fileBytes);
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (IOException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static String[] hashPassword(String password) {
         try {
             // Генерация случайной соли
